@@ -8,7 +8,7 @@ public class Enum {
         budget,standard,premium
     }
     public enum FavBrand{
-        Audi,BMW,Toyota,Passat,Ford
+       Audi,BMW,Mercedes,Fiat,Skoda,Ford
     }
 
 }

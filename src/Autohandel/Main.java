@@ -10,7 +10,9 @@ public class Main {
         //System.out.println(Audi);
         //System.out.println(Adrian);
         ArrayList<Vehicle> vehicles = Vehicle.generateVehicles(4);
+        ArrayList<Client> clients = Client.generateClient(7);
         System.out.println(vehicles);
+        System.out.println(clients);
 
     }
 }
