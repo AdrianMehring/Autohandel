@@ -30,13 +30,9 @@ public class Vehicle {
             String brand = COLORS[randomBrands];
             Enum.Segment segment = Enum.Segment.values()[randomSegment];
             int randomVehicles = ThreadLocalRandom.current().nextInt(0,Enum.TypeOfCar.values().length);
-            switch (randomVehicles){
-                case 0:
-                    vehicles.add(new Car(value,brand,mileAge,color,segment));
-                    break;
-                case 1:
-                    vehicles.add(new Truck(value,brand,mileAge,color,segment,randomSpace));
-                    break;
+            switch (randomVehicles) {
+                case 0 -> vehicles.add(new Car(value, brand, mileAge, color, segment));
+                case 1 -> vehicles.add(new Truck(value, brand, mileAge, color, segment, randomSpace));
             }
 
         }
