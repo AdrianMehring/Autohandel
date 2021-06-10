@@ -3,20 +3,24 @@ package Autohandel;
 import java.util.Arrays;
 
 public class Client {
-    static Integer FAVOURITE_BRANDS_OF_CLIENT=2; //Ilość ulubionych marek danego klienta
     final Double money;
-    final String[] bestBrand;
+    Enum.TypeOfCar  favVehicle;
+    Enum.FavBrand favBrand;
 
-    public Client(Double money) {
+
+    public Client(Double money,Enum.TypeOfCar favVehicle,Enum.FavBrand favBrand) {
         this.money = money;
-        this.bestBrand = new String[FAVOURITE_BRANDS_OF_CLIENT];
+        this.favVehicle = favVehicle;
+        this.favBrand = favBrand;
+
     }
 
     @Override
     public String toString() {
         return "Client{" +
                 "money=" + money +
-                ", bestBrand=" + Arrays.toString(bestBrand) +
+                ", favVehicle=" + favVehicle +
+                ", favBrand=" + favBrand +
                 '}';
     }
 }
