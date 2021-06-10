@@ -29,7 +29,7 @@ public class Vehicle {
             String color = COLORS[randomColor];
             String brand = COLORS[randomBrands];
             Enum.Segment segment = Enum.Segment.values()[randomSegment];
-            int randomVehicles = ThreadLocalRandom.current().nextInt(0,Enum.TypeOfCar.values().length);
+            int randomVehicles = ThreadLocalRandom.current().nextInt(0,Enum.TypeOfCar.values().length);//losowe generowanie typu autka
             switch (randomVehicles) {
                 case 0 -> vehicles.add(new Car(value, brand, mileAge, color, segment));
                 case 1 -> vehicles.add(new Truck(value, brand, mileAge, color, segment, randomSpace));
