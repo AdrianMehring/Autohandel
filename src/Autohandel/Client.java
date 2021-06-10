@@ -2,6 +2,7 @@ package Autohandel;
 
 import java.util.Arrays;
 
+
 public class Client {
     final Double money;
     Enum.TypeOfCar  favVehicle;
