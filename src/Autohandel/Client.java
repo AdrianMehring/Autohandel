@@ -13,11 +13,12 @@ public class Client {
     Enum.FavBrand favBrand;
     Enum.FavBrand favBrand1;
     Enum.ConditionOfTheCar conditionOfTheCar;
+    Integer minimumSpace;
 
     public final static String[] NAME={"Andrzej","Adrian","Monika","Mariusz","Piotr","Kacper","Szymon"};
     public final static String[] SURNAME={"Wieczorek","Majewski","Kwiecień","Krupa","Szulc","Lange"};
 
-    public Client(String name,String surname,long money,Enum.TypeOfCar favVehicle,Enum.FavBrand favBrand,Enum.FavBrand favBrand1,Enum.ConditionOfTheCar conditionOfTheCar) {
+    public Client(String name,String surname,long money,Enum.TypeOfCar favVehicle,Enum.FavBrand favBrand,Enum.FavBrand favBrand1,Enum.ConditionOfTheCar conditionOfTheCar,Integer minimumSpace) {
         this.name = name;
         this.surname = surname;
         this.money = money;
@@ -25,9 +26,7 @@ public class Client {
         this.favBrand = favBrand;
         this.favBrand1 = favBrand1;
         this.conditionOfTheCar = conditionOfTheCar;
-
-
-
+        this.minimumSpace = minimumSpace;
     }
 
     public static ArrayList<Client> generateClient(int x){
@@ -59,15 +58,22 @@ public class Client {
             else {
                 condition = Enum.ConditionOfTheCar.NEW;
             }
-
-
-
             double randomMoney = ThreadLocalRandom.current().nextDouble(5000.0,200000.0);
             long randomMoneyValue =Math.round(randomMoney);
             Enum.FavBrand favBrand1 = Enum.FavBrand.values()[randomfavBrand1];
             Enum.FavBrand favBrand = Enum.FavBrand.values()[randomfavBrand];
             Enum.TypeOfCar favVehicle = Enum.TypeOfCar.values()[randomfavVehicle];
-            clients.add(new Client(name,surname,randomMoneyValue,favVehicle,favBrand,favBrand1,condition));
+            Integer minimumSpace;
+            if(favVehicle == Enum.TypeOfCar.Truck)
+
+            {
+                minimumSpace = ThreadLocalRandom.current().nextInt(500,2001);
+            }
+            else
+            {
+                minimumSpace = null;
+            }
+            clients.add(new Client(name,surname,randomMoneyValue,favVehicle,favBrand,favBrand1,condition,minimumSpace));
 
 
         }
@@ -84,6 +90,7 @@ public class Client {
                 ", favBrand=" + favBrand +
                 ", favBrand1=" + favBrand1 +
                 ", conditionOfTheCar=" + conditionOfTheCar +
+                ", minimumSpace=" + minimumSpace +
                 '}';
     }
 }

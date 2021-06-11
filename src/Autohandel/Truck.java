@@ -3,10 +3,11 @@ package Autohandel;
 public class Truck extends Vehicle {
     final Integer space;
 
-    public Truck(long value, String brand, Integer mileage, String color, Enum.Segment segment, Enum.ConditionOfTheCar condition, Integer space) {
-        super(value, brand, mileage, color, segment, condition);
+    public Truck(long value, String brand, Integer mileage, String color, Enum.Segment segment, Enum.ConditionOfTheCar condition, Enum.Elements elements, Integer space) {
+        super(value, brand, mileage, color, segment, condition, elements);
         this.space = space;
     }
+
 
     @Override
     public String toString() {
@@ -18,6 +19,7 @@ public class Truck extends Vehicle {
                 ", color='" + color + '\'' +
                 ", condition=" + condition +
                 ", segment=" + segment +
+                ", elements=" + elements +
                 '}';
     }
 }

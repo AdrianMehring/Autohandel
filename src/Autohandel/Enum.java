@@ -13,5 +13,8 @@ public class Enum {
     public enum ConditionOfTheCar{
         NEW,Broken,Faulty_suspension
     }
+    public enum Elements{
+        Brakes,Suspension,Engine,Body,Gearbox
+    }
 
 }
