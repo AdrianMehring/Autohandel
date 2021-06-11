@@ -8,19 +8,23 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Client {
     String name;
     String surname;
-    final Double money;
+    final long money;
     Enum.TypeOfCar  favVehicle;
     Enum.FavBrand favBrand;
+    Enum.FavBrand favBrand1;
+    Enum.ConditionOfTheCar conditionOfTheCar;
 
     public final static String[] NAME={"Andrzej","Adrian","Monika","Mariusz","Piotr","Kacper","Szymon"};
     public final static String[] SURNAME={"Wieczorek","Majewski","Kwiecień","Krupa","Szulc","Lange"};
 
-    public Client(String name,String surname,Double money,Enum.TypeOfCar favVehicle,Enum.FavBrand favBrand) {
+    public Client(String name,String surname,long money,Enum.TypeOfCar favVehicle,Enum.FavBrand favBrand,Enum.FavBrand favBrand1,Enum.ConditionOfTheCar conditionOfTheCar) {
         this.name = name;
         this.surname = surname;
         this.money = money;
         this.favVehicle = favVehicle;
         this.favBrand = favBrand;
+        this.favBrand1 = favBrand1;
+        this.conditionOfTheCar = conditionOfTheCar;
 
 
 
@@ -34,14 +38,36 @@ public class Client {
             String name = NAME[randomName];
             String surname = SURNAME[randomSurname];
             int randomfavVehicle = ThreadLocalRandom.current().nextInt(0,Enum.TypeOfCar.values().length);
-            int randomfavBrand = ThreadLocalRandom.current().nextInt(0,Enum.FavBrand.values().length);
-            Double randomMoneyValue = ThreadLocalRandom.current().nextDouble(5000.0,200000.0);
+            int randomfavBrand;
+            int randomfavBrand1;
+            do{
+                randomfavBrand = ThreadLocalRandom.current().nextInt(0,Enum.FavBrand.values().length);
+                randomfavBrand1 = ThreadLocalRandom.current().nextInt(0,Enum.FavBrand.values().length);
+
+            }
+            while (randomfavBrand == randomfavBrand1);
+            //losowa kondycja auta
+            int random = ThreadLocalRandom.current().nextInt(0,100);
+            Enum.ConditionOfTheCar condition;
+
+            if(random<15) {
+                condition = Enum.ConditionOfTheCar.Broken;
+            }
+            else if(random<40) {
+                condition = Enum.ConditionOfTheCar.Faulty_suspension;
+            }
+            else {
+                condition = Enum.ConditionOfTheCar.NEW;
+            }
 
 
 
+            double randomMoney = ThreadLocalRandom.current().nextDouble(5000.0,200000.0);
+            long randomMoneyValue =Math.round(randomMoney);
+            Enum.FavBrand favBrand1 = Enum.FavBrand.values()[randomfavBrand1];
             Enum.FavBrand favBrand = Enum.FavBrand.values()[randomfavBrand];
             Enum.TypeOfCar favVehicle = Enum.TypeOfCar.values()[randomfavVehicle];
-            clients.add(new Client(name,surname,randomMoneyValue,favVehicle,favBrand));
+            clients.add(new Client(name,surname,randomMoneyValue,favVehicle,favBrand,favBrand1,condition));
 
 
         }
@@ -56,6 +82,8 @@ public class Client {
                 ", money=" + money +
                 ", favVehicle=" + favVehicle +
                 ", favBrand=" + favBrand +
+                ", favBrand1=" + favBrand1 +
+                ", conditionOfTheCar=" + conditionOfTheCar +
                 '}';
     }
 }
