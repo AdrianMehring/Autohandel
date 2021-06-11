@@ -1,15 +1,16 @@
 package Autohandel;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 public class Vehicle {
-    final long value;
+    long value;
     final String brand;
     final Integer mileage;
     final String color;
     Enum.ConditionOfTheCar condition;
     Enum.Segment segment;
     Enum.Elements elements;
-    final long repairCost;
+    long repairCost;
 
     public final static String[] BRANDS={"Audi","BMW","Mercedes","Fiat","Skoda","Ford"};
     public final static String[] COLORS={"Yellow","Blue","Green","Red","White","Orange"};
@@ -85,4 +86,43 @@ public class Vehicle {
     }
 
 
+
+    public Boolean repair(Player player, Vehicle cars) {
+
+        Scanner Input = new Scanner(System.in);
+
+
+        int mechanicsnumber;
+        System.out.println("Wybierz mechanika:");
+        System.out.println("1. Janusz 100% naprawy ale najdrozsze ceny" + repairCost*1.4);
+        System.out.println("2. Marian 90% szans naprawy auta"+ repairCost*1.1);
+        System.out.println("3.Adrian 80% szansy naprawy auta oraz 2 % szansy na zepsucie czegoś"+ repairCost);
+        mechanicsnumber = Input.nextInt();
+        switch (mechanicsnumber) {
+            case 1->{
+                cars.value +=repairCost;
+                cars.repairCost= 0;
+                cars.elements = null;
+                return true;
+            }
+            case 2->{
+                cars.value +=repairCost;
+                cars.repairCost= 0;
+                cars.elements = null;
+                return true;
+            }
+            case 3-> {
+
+                cars.value +=repairCost;
+                cars.repairCost= 0;
+                cars.elements = null;
+                return true;
+            }
+            default -> {
+                System.out.println("Podaj poprawny numer mechanika");
+                return false;
+            }
+        }
+    }
 }
+
