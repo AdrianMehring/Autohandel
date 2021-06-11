@@ -45,6 +45,8 @@ public class Vehicle {
                 elements=null;
             }
             double repairCost ;
+            //Audi,BMW,Mercedes,Fiat,Skoda,Ford
+
             if(Enum.ConditionOfTheCar.NEW ==condition)
             {
                 repairCost = 0;
@@ -63,6 +65,14 @@ public class Vehicle {
             else{
                 repairCost =  value;
             }
+            switch (brand) {
+                case "BMW", "Audi" -> repairCost *= 1.2;
+                case "Mercedes" -> repairCost *= 1.3;
+                case "Fiat", "Ford" -> repairCost *= 1.1;
+            }
+
+
+
             int randomVehicles = ThreadLocalRandom.current().nextInt(0,Enum.TypeOfCar.values().length);//losowe generowanie typu autka
             switch (randomVehicles) {
                 case 0 -> vehicles.add(new Car(value, brand, mileAge, color, segment,condition,elements, (long) repairCost));
