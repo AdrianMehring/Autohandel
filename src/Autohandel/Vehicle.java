@@ -9,10 +9,11 @@ public class Vehicle {
     Enum.ConditionOfTheCar condition;
     Enum.Segment segment;
     Enum.Elements elements;
+    final long repairCost;
 
     public final static String[] BRANDS={"Audi","BMW","Mercedes","Fiat","Skoda","Ford"};
     public final static String[] COLORS={"Yellow","Blue","Green","Red","White","Orange"};
-    public Vehicle(long value, String brand, Integer mileage, String color, Enum.Segment segment,Enum.ConditionOfTheCar condition,Enum.Elements elements) {
+    public Vehicle(long value, String brand, Integer mileage, String color, Enum.Segment segment, Enum.ConditionOfTheCar condition, Enum.Elements elements, long repairCost) {
         this.value = value;
         this.brand = brand;
         this.mileage = mileage;
@@ -20,6 +21,7 @@ public class Vehicle {
         this.segment = segment;
         this.condition = condition;
         this.elements = elements;
+        this.repairCost = repairCost;
     }
 
     public static ArrayList<Vehicle> generateVehicles(int x){
@@ -42,15 +44,35 @@ public class Vehicle {
             if(Enum.ConditionOfTheCar.NEW==condition){
                 elements=null;
             }
+            double repairCost ;
+            if(Enum.ConditionOfTheCar.NEW ==condition)
+            {
+                repairCost = 0;
+            }
+            else if(Enum.Elements.Gearbox==elements || Enum.Elements.Body==elements){
+                repairCost = value*0.5;
+            }
+            else if(Enum.Elements.Brakes==elements)
+            {
+                repairCost =  value*0.1;
+            }
+            else if(Enum.Elements.Suspension==elements)
+            {
+                repairCost =  value*0.2;
+            }
+            else{
+                repairCost =  value;
+            }
             int randomVehicles = ThreadLocalRandom.current().nextInt(0,Enum.TypeOfCar.values().length);//losowe generowanie typu autka
             switch (randomVehicles) {
-                case 0 -> vehicles.add(new Car(value, brand, mileAge, color, segment,condition,elements));
-                case 1 -> vehicles.add(new Truck(value, brand, mileAge, color, segment,condition,elements,randomSpace));
-                case 2 -> vehicles.add((new Motorcycle(value,brand,mileAge,color,segment,condition,elements)));
+                case 0 -> vehicles.add(new Car(value, brand, mileAge, color, segment,condition,elements, (long) repairCost));
+                case 1 -> vehicles.add(new Truck(value, brand, mileAge, color, segment,condition,elements,randomSpace, (long) repairCost));
+                case 2 -> vehicles.add((new Motorcycle(value,brand,mileAge,color,segment,condition,elements, (long) repairCost)));
             }
 
         }
     return vehicles;
     }
+
 
 }
