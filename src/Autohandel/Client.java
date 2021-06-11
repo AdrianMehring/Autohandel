@@ -65,7 +65,6 @@ public class Client {
             Enum.TypeOfCar favVehicle = Enum.TypeOfCar.values()[randomfavVehicle];
             Integer minimumSpace;
             if(favVehicle == Enum.TypeOfCar.Truck)
-
             {
                 minimumSpace = ThreadLocalRandom.current().nextInt(500,2001);
             }
@@ -74,8 +73,6 @@ public class Client {
                 minimumSpace = null;
             }
             clients.add(new Client(name,surname,randomMoneyValue,favVehicle,favBrand,favBrand1,condition,minimumSpace));
-
-
         }
         return clients;
     }
