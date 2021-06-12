@@ -132,7 +132,7 @@ public class Main {
                             Enum.ConditionOfTheCar e = Adr.vehicles.get(option).condition = Enum.ConditionOfTheCar.NEW;
                             //klient kupi auto nowe lub jego ulubionej kondycji
 
-                            if( a1.toString()  == b ||a.toString()  == b && d==c ||c == e ){
+                            if(a1.toString().equals(b) || a.toString().equals(b) && d==c ||c == e ){
                                 System.out.println("Udało sie");
                                 System.out.println("Sprzedałeś auto:"+Adr.vehicles.get(option)+"Klientowi "+clients.get(option));
                                 System.out.println((Adr.sellVehicles(Adr.vehicles.get(option), clients.get(option), Adr.vehicles)));
