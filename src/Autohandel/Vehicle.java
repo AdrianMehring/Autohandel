@@ -88,7 +88,6 @@ public class Vehicle {
 
 
     public Boolean repair(Player player, Vehicle cars) {
-
         Scanner Input = new Scanner(System.in);
 
 

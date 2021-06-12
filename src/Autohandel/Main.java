@@ -20,9 +20,14 @@ public class Main {
         System.out.println(vehicles.get(2).elements);
         System.out.println(vehicles.get(2).value);
 
-
+        System.out.println((Adr.getClients()));
+        System.out.println((Adr.startingClients(clients.get(1),clients)));
+        System.out.println((Adr.startingClients(clients.get(2),clients)));
 
         //Przeglądanie bazy pojazdów
+
+
+
         System.out.println(vehicles);
         System.out.println(Adr.getTransactionHistory());
         System.out.println(Adr.money);
@@ -33,5 +38,12 @@ public class Main {
         System.out.println(Adr.getTransactionHistory());
         System.out.println(vehicles);
         //znikanie kupoionego pojazdu z bazy działa
+        System.out.println("Stan konta przed sprzedaży"+Adr.getMoney());
+        System.out.println((Adr.getClients()));
+        System.out.println((Adr.sellVehicles(vehicles.get(1),vehicles, clients.get(1)))); //sprzedaż działa, usuwa klienta oraz płaci podatek
+        System.out.println("Stan konta po sprzedaży"+Adr.getMoney());
+        System.out.println(Adr.getTransactionHistory());
+        System.out.println((Adr.getClients()));
+
     }
 }
