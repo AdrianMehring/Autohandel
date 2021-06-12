@@ -29,9 +29,14 @@ public class Client {
         this.minimumSpace = minimumSpace;
     }
 
-    public static ArrayList<Client> generateClient(int x){
+    public static ArrayList<Client> generateRandomClients(int x) {
         ArrayList<Client> clients = new ArrayList<>();
-        for(int i = 0;i<x;i++){
+        for(int i = 0; i < x; i++) {
+            clients.add(generateClient());
+        }
+        return clients;
+    }
+    public static Client generateClient(){
             int randomName = ThreadLocalRandom.current().nextInt(0,NAME.length);
             int randomSurname = ThreadLocalRandom.current().nextInt(0,SURNAME.length);
             String name = NAME[randomName];
@@ -72,9 +77,8 @@ public class Client {
             {
                 minimumSpace = null;
             }
-            clients.add(new Client(name,surname,randomMoneyValue,favVehicle,favBrand,favBrand1,condition,minimumSpace));
-        }
-        return clients;
+            return new Client(name,surname,randomMoneyValue,favVehicle,favBrand,favBrand1,condition,minimumSpace);
+
     }
 
     @Override

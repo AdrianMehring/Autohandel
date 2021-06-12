@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
+
 public class Player {
     long money;
     final long Washing_Price =100;
@@ -39,8 +40,7 @@ public class Player {
         return true;
     }
 
-
-    public Boolean sellVehicles(Vehicle cars,ArrayList<Vehicle> vehicles, Client client){
+    public Boolean sellVehicles(Vehicle cars, Client client,ArrayList<Vehicle> vehicles){
         double tax = cars.value*0.23;
         double price = cars.value*1.23;//podatek 23 %
 
@@ -48,7 +48,8 @@ public class Player {
             this.money+=price;
             transactionHistory.add("Sprzedany"+cars+"za"+price);
             System.out.println("Zapłaciłeś"+tax+"Podatku");
-            clients.remove(client);
+            vehicles.remove(cars);
+            this.clients.remove(client);
             this.clients.add(client);
             this.clients.add(client);
             return true;
@@ -93,41 +94,25 @@ public class Player {
             case 1 ->{
                 double adsPrice = 2000.0;
                 this.money -=adsPrice;
-                this.clients.add(client);
+                clients.add(Client.generateClient());
                 System.out.println("Koszt reklamy"+adsPrice);
                 return true;
 
             }
-            case 2 ->{
-
-                int a;
-                a = ThreadLocalRandom.current().nextInt(0, 100);
+            case 2 -> {
+                int x = ThreadLocalRandom.current().nextInt(2, 4);
+                int i = 0;
                 double adsPrice = 5000.0;
-                this.money -=adsPrice;
-                System.out.println("Koszt reklamy"+adsPrice);
-                if(a <= 20)
-                {
-                    this.clients.add(client);
-
+                this.money -= adsPrice;
+                System.out.println("Koszt reklamy" + adsPrice);
+                do {
+                    clients.add(Client.generateClient());
+                    i++;
                 }
-                else if (a > 21&&a<=40)
-                {
-                    this.clients.add(client);
-                    this.clients.add(client);
-
-                }
-                else if  (a > 41&&a <=100)
-                {
-                    this.clients.add(client);
-                    this.clients.add(client);
-                    this.clients.add(client);
-
-                }
-
-                }
-
+                while (x > i);
+            }
             default -> {
-                System.out.println("Podaj poprawny numer gazety");
+                System.out.println("Podaj poprawny numer ");
                 return false;
             }
 
@@ -137,6 +122,10 @@ public class Player {
 
         return true;
     }
+
+
+
+
 
 
 }

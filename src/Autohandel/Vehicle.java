@@ -99,27 +99,27 @@ public class Vehicle {
 
         int mechanicsnumber;
         System.out.println("Wybierz mechanika:");
-        System.out.println("1. Janusz 100% naprawy ale najdrozsze ceny" + repairCost*1.4);
-        System.out.println("2. Marian 90% szans naprawy auta"+ repairCost*1.1);
-        System.out.println("3.Adrian 80% szansy naprawy auta oraz 2 % szansy na zepsucie czegoś"+ repairCost);
+        System.out.println("1. Janusz 100% naprawy ale najdrozsze ceny" + cars.repairCost*1.4);
+        System.out.println("2. Marian 90% szans naprawy auta"+ cars.repairCost*1.1);
+        System.out.println("3.Adrian 80% szansy naprawy auta oraz 2 % szansy na zepsucie czegoś"+ cars.repairCost);
         mechanicsnumber = Input.nextInt();
         switch (mechanicsnumber) {
             case 1->{
-                History.add("Naprawiony  za "+repairCost+"U janusza"+cars.elements);
-                cars.value +=repairCost;
+                History.add("Naprawiony  za "+cars.repairCost+"U janusza"+cars.elements);
+                cars.value +=cars.repairCost;
                 cars.repairCost= 0;
                 cars.elements = null;
                 return true;
             }
             case 2->{
                 if(ThreadLocalRandom.current().nextInt(0,100)>=10)
-                { History.add("Naprawiony  za "+repairCost+"Mariana");
-                cars.value +=repairCost;
+                { History.add("Naprawiony  za "+cars.repairCost+"Mariana");
+                cars.value +=cars.repairCost;
                 cars.repairCost= 0;
                 cars.elements = null;
                 return true;}
                 else{
-                    History.add("Popsuty za "+repairCost+"Mariana"+cars.elements);
+                    History.add("Popsuty za "+cars.repairCost+"Mariana"+cars.elements);
                     System.out.println("Mechanik nie dał rady naprawić, potrzebna interwencja Janusza");
                     return false;
                 }
@@ -128,19 +128,19 @@ public class Vehicle {
 
                 if (ThreadLocalRandom.current().nextInt(0, 100) >= 20) {
 
-                    cars.value += repairCost;
-                    History.add("Naprawiony za "+repairCost+"Adriana"+cars.elements);
+                    cars.value += cars.repairCost;
+                    History.add("Naprawiony za "+cars.repairCost+"Adriana"+cars.elements);
                     cars.repairCost = 0;
                     cars.elements = null;
 
                     return true;
                 } else if (ThreadLocalRandom.current().nextInt(0, 100) <= 2) {
-                    History.add("Popsuty za "+repairCost+"Adriana");
+                    History.add("Popsuty za "+cars.repairCost+"Adriana");
                     System.out.println("Mechanik nie dał rady naprawić i uszkodził kolejną część, potrzebna interwencja Janusza ");
                     return false;
 
                 } else {
-                    History.add("Popsuty za "+repairCost+"Adriana");
+                    History.add("Popsuty za "+cars.repairCost+"Adriana");
                     System.out.println("Mechanik nie dał rady naprawić, potrzebna interwencja Janusza");
                     return false;
                 }
