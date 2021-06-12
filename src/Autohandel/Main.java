@@ -6,7 +6,7 @@ public class Main {
         ArrayList<Vehicle> vehicles = Vehicle.generateVehicles(30);
         ArrayList<Client> clients = Client.generateRandomClients(2);
         Player Adr = new Player(100000);
-        long Winningmoney=Adr.money*2;
+        long Winningmoney=Adr.money*21;
         Adr.startingClients(clients.get(0),clients);
         Adr.startingClients(clients.get(1),clients);
         System.out.println("Witam w grze tekstowej Autohandel u Janusza");
@@ -107,6 +107,7 @@ public class Main {
                     System.out.println((Adr.getClients()));
                     System.out.println("-------------------------------------------");
                 }
+                //Zrobić wybrednych klientów
                 case 6 -> {
                     System.out.println("-------------------------------------------");
                     if(Adr.getVehicles().size()-1==-1){
@@ -120,12 +121,34 @@ public class Main {
                             System.out.println("Nie ma takiego pojazdu wpisz prawidłowy numer");
                         }
                         else{
-                            System.out.println("Sprzedałeś auto:"+Adr.vehicles.get(option));
-                            System.out.println((Adr.sellVehicles(Adr.vehicles.get(option), clients.get(option), Adr.vehicles)));
-                            System.out.println("Aktualne pieniądze "+Adr.getMoney());
-                            System.out.println("Liczba zagranych tur" + numberofturn);
+                            System.out.println("Jakiemu klientowi chcesz sprzedać auto");
+                            int optionclient = userInput.nextInt();
+                            Enum.FavBrand a = clients.get(optionclient).favBrand;
+                            Enum.FavBrand a1 = clients.get(optionclient).favBrand1;
+                            String b = Adr.vehicles.get(option).brand;
+
+                            Enum.ConditionOfTheCar d = clients.get(optionclient).conditionOfTheCar;
+                            Enum.ConditionOfTheCar c = Adr.vehicles.get(option).condition;
+                            Enum.ConditionOfTheCar e = Adr.vehicles.get(option).condition = Enum.ConditionOfTheCar.NEW;
+                            //klient kupi auto nowe lub jego ulubionej kondycji
+
+                            if( a1.toString()  == b ||a.toString()  == b && d==c ||c == e ){
+                                System.out.println("Udało sie");
+                                System.out.println("Sprzedałeś auto:"+Adr.vehicles.get(option)+"Klientowi "+clients.get(option));
+                                System.out.println((Adr.sellVehicles(Adr.vehicles.get(option), clients.get(option), Adr.vehicles)));
+                                System.out.println("Aktualne pieniądze "+Adr.getMoney());
+                                System.out.println("Liczba zagranych tur" + numberofturn);
+                            }
+
+                            else{
+                               System.out.println("Nie udało się");
+                                System.out.println("Nie sprzedałeś auta:"+Adr.vehicles.get(option).brand+"Klientowi "+clients.get(option));
+
+                            }
                         }
-                    }
+
+                        }
+
                     System.out.println("-------------------------------------------");
                 }
                 case 7 -> {System.out.println("-------------------------------------------");
@@ -193,15 +216,18 @@ public class Main {
                     System.out.println("-------------------------------------------");
                 }
             }
-        }
-        while (numberofturn<15);
-            System.out.println("Koniec");
+
             if(Adr.money>=Winningmoney)
             {
+                System.out.println("Koniec");
                 System.out.println("Wygrałeś zdobyłeś "+Adr.money);
+                return;
             }
-            else{
-                System.out.println("Przegrałeś zdobyłeś "+Adr.money);
-            }
+
+        }
+        while (numberofturn<15);
+        System.out.println("Koniec");
+        System.out.println("Przegrałeś zdobyłeś "+Adr.money);
+
     }
 }
