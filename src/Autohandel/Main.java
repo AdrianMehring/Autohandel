@@ -228,6 +228,6 @@ public class Main {
         while (numberofturn<15);
         System.out.println("Koniec");
         System.out.println("Przegrałeś zdobyłeś "+Adr.money);
-
+        System.out.println("Adrian Mehring");
     }
 }
