@@ -2,8 +2,6 @@ package Autohandel;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
-
-
 public class Player {
     long money;
     final long Washing_Price =100;
@@ -12,10 +10,8 @@ public class Player {
     ArrayList<Client> clients = new ArrayList<>();
     public Player(long money)
     {
-
         this.money = money;
     }
-    //kupno pojazdu działa
     public Boolean buyVehicles(Vehicle cars , ArrayList<Vehicle> vehicles)
     {
         double price = cars.value*1.02+Washing_Price;//podatek 2 % i mycie
@@ -33,17 +29,14 @@ public class Player {
             return true;
         }
     }
-
     public Boolean startingClients(Client client, ArrayList<Client> clients)
     {
         this.clients.add(client);
         return true;
     }
-
     public Boolean sellVehicles(Vehicle cars, Client client,ArrayList<Vehicle> vehicles){
         double tax = cars.value*0.23;
         double price = cars.value*1.23;//podatek 23 %
-
         if(client.money>price){
             this.money+=price;
             transactionHistory.add("Sprzedany"+cars+"za"+price);
@@ -59,29 +52,19 @@ public class Player {
             return false;
         }
     }
-
-    //Pobieranie aut działa
     public ArrayList<Vehicle> getVehicles() {
         return this.vehicles;
     }
-    //Historia transakcji// działa
     public ArrayList<String> getTransactionHistory(){
         return this.transactionHistory;
     }
-
-    //przegląd klientów
     public ArrayList<Client> getClients(){
         return this.clients;
     }
-
-
-
-
     public  long getMoney()
     {
         return  this.money;
     }
-
     public Boolean buyAds(Client client){
         Scanner Input = new Scanner(System.in);
         int typeofAds;
@@ -89,7 +72,6 @@ public class Player {
         System.out.println("1.Reklama internetowa, tańsza lecz daje tylko 1 klienta");
         System.out.println("2.Reklama w gazecie, daje losową ilość klientów od 1 do 3");
         typeofAds = Input.nextInt();
-
         switch (typeofAds) {
             case 1 ->{
                 double adsPrice = 2000.0;
@@ -97,10 +79,9 @@ public class Player {
                 clients.add(Client.generateClient());
                 System.out.println("Koszt reklamy"+adsPrice);
                 return true;
-
             }
             case 2 -> {
-                int x = ThreadLocalRandom.current().nextInt(2, 4);
+                int x = ThreadLocalRandom.current().nextInt(1, 3);
                 int i = 0;
                 double adsPrice = 5000.0;
                 this.money -= adsPrice;
@@ -115,17 +96,7 @@ public class Player {
                 System.out.println("Podaj poprawny numer ");
                 return false;
             }
-
-
         }
-
-
         return true;
     }
-
-
-
-
-
-
 }

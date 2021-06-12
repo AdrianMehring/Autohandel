@@ -14,10 +14,8 @@ public class Client {
     Enum.FavBrand favBrand1;
     Enum.ConditionOfTheCar conditionOfTheCar;
     Integer minimumSpace;
-
     public final static String[] NAME={"Andrzej","Adrian","Monika","Mariusz","Piotr","Kacper","Szymon"};
     public final static String[] SURNAME={"Wieczorek","Majewski","Kwiecień","Krupa","Szulc","Lange"};
-
     public Client(String name,String surname,long money,Enum.TypeOfCar favVehicle,Enum.FavBrand favBrand,Enum.FavBrand favBrand1,Enum.ConditionOfTheCar conditionOfTheCar,Integer minimumSpace) {
         this.name = name;
         this.surname = surname;
@@ -28,7 +26,6 @@ public class Client {
         this.conditionOfTheCar = conditionOfTheCar;
         this.minimumSpace = minimumSpace;
     }
-
     public static ArrayList<Client> generateRandomClients(int x) {
         ArrayList<Client> clients = new ArrayList<>();
         for(int i = 0; i < x; i++) {
@@ -47,7 +44,6 @@ public class Client {
             do{
                 randomfavBrand = ThreadLocalRandom.current().nextInt(0,Enum.FavBrand.values().length);
                 randomfavBrand1 = ThreadLocalRandom.current().nextInt(0,Enum.FavBrand.values().length);
-
             }
             while (randomfavBrand == randomfavBrand1);
             //losowa kondycja auta
@@ -78,9 +74,7 @@ public class Client {
                 minimumSpace = null;
             }
             return new Client(name,surname,randomMoneyValue,favVehicle,favBrand,favBrand1,condition,minimumSpace);
-
     }
-
     @Override
     public String toString() {
         return "Client{" +
