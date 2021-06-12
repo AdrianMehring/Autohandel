@@ -100,23 +100,43 @@ public class Vehicle {
         mechanicsnumber = Input.nextInt();
         switch (mechanicsnumber) {
             case 1->{
+
                 cars.value +=repairCost;
                 cars.repairCost= 0;
                 cars.elements = null;
                 return true;
             }
             case 2->{
-                cars.value +=repairCost;
-                cars.repairCost= 0;
-                cars.elements = null;
-                return true;
-            }
-            case 3-> {
+                if(ThreadLocalRandom.current().nextInt(0,100)>=10)
+                {
 
                 cars.value +=repairCost;
                 cars.repairCost= 0;
                 cars.elements = null;
-                return true;
+                return true;}
+                else{
+                    System.out.println("Mechanik nie dał rady naprawić, potrzebna interwencja Janusza");
+                    return false;
+                }
+            }
+            case 3-> {
+
+                if (ThreadLocalRandom.current().nextInt(0, 100) >= 20) {
+
+                    cars.value += repairCost;
+                    cars.repairCost = 0;
+                    cars.elements = null;
+                    return true;
+                } else if (ThreadLocalRandom.current().nextInt(0, 100) <= 2) {
+
+                    System.out.println("Mechanik nie dał rady naprawić i uszkodził kolejną część, potrzebna interwencja Janusza ");
+                    return false;
+
+                } else {
+
+                    System.out.println("Mechanik nie dał rady naprawić, potrzebna interwencja Janusza");
+                    return false;
+                }
             }
             default -> {
                 System.out.println("Podaj poprawny numer mechanika");
