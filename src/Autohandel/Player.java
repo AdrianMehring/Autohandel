@@ -1,5 +1,7 @@
 package Autohandel;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Player {
     long money;
@@ -51,7 +53,6 @@ public class Player {
             this.clients.add(client);
             return true;
         }
-
         else{
             System.out.println("Klient nie kupił auta");
             return false;
@@ -80,6 +81,62 @@ public class Player {
         return  this.money;
     }
 
+    public Boolean buyAds(Client client){
+        Scanner Input = new Scanner(System.in);
+        int typeofAds;
+        System.out.println("Wybierz reklamę:");
+        System.out.println("1.Reklama internetowa, tańsza lecz daje tylko 1 klienta");
+        System.out.println("2.Reklama w gazecie, daje losową ilość klientów od 1 do 3");
+        typeofAds = Input.nextInt();
+
+        switch (typeofAds) {
+            case 1 ->{
+                double adsPrice = 2000.0;
+                this.money -=adsPrice;
+                this.clients.add(client);
+                System.out.println("Koszt reklamy"+adsPrice);
+                return true;
+
+            }
+            case 2 ->{
+
+                int a;
+                a = ThreadLocalRandom.current().nextInt(0, 100);
+                double adsPrice = 5000.0;
+                this.money -=adsPrice;
+                System.out.println("Koszt reklamy"+adsPrice);
+                if(a <= 20)
+                {
+                    this.clients.add(client);
+
+                }
+                else if (a > 21&&a<=40)
+                {
+                    this.clients.add(client);
+                    this.clients.add(client);
+
+                }
+                else if  (a > 41&&a <=100)
+                {
+                    this.clients.add(client);
+                    this.clients.add(client);
+                    this.clients.add(client);
+
+                }
+
+                }
+
+            default -> {
+                System.out.println("Podaj poprawny numer gazety");
+                return false;
+            }
+
+
+        }
+
+
+        return true;
+    }
 
 
 }

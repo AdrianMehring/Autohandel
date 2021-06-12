@@ -11,6 +11,7 @@ public class Vehicle {
     Enum.Segment segment;
     Enum.Elements elements;
     long repairCost;
+    ArrayList<String > History = new ArrayList<>();
 
     public final static String[] BRANDS={"Audi","BMW","Mercedes","Fiat","Skoda","Ford"};
     public final static String[] COLORS={"Yellow","Blue","Green","Red","White","Orange"};
@@ -74,7 +75,12 @@ public class Vehicle {
 
 
 
+
             int randomVehicles = ThreadLocalRandom.current().nextInt(0,Enum.TypeOfCar.values().length);//losowe generowanie typu autka
+            if(randomVehicles ==2){ //90% ceny normalnej
+                value*=0.9;
+
+            }
             switch (randomVehicles) {
                 case 0 -> vehicles.add(new Car(value, brand, mileAge, color, segment,condition,elements, (long) repairCost));
                 case 1 -> vehicles.add(new Truck(value, brand, mileAge, color, segment,condition,elements,randomSpace, (long) repairCost));
@@ -99,7 +105,7 @@ public class Vehicle {
         mechanicsnumber = Input.nextInt();
         switch (mechanicsnumber) {
             case 1->{
-
+                History.add("Naprawiony  za "+repairCost+"U janusza"+cars.elements);
                 cars.value +=repairCost;
                 cars.repairCost= 0;
                 cars.elements = null;
@@ -107,13 +113,13 @@ public class Vehicle {
             }
             case 2->{
                 if(ThreadLocalRandom.current().nextInt(0,100)>=10)
-                {
-
+                { History.add("Naprawiony  za "+repairCost+"Mariana");
                 cars.value +=repairCost;
                 cars.repairCost= 0;
                 cars.elements = null;
                 return true;}
                 else{
+                    History.add("Popsuty za "+repairCost+"Mariana"+cars.elements);
                     System.out.println("Mechanik nie dał rady naprawić, potrzebna interwencja Janusza");
                     return false;
                 }
@@ -123,16 +129,18 @@ public class Vehicle {
                 if (ThreadLocalRandom.current().nextInt(0, 100) >= 20) {
 
                     cars.value += repairCost;
+                    History.add("Naprawiony za "+repairCost+"Adriana"+cars.elements);
                     cars.repairCost = 0;
                     cars.elements = null;
+
                     return true;
                 } else if (ThreadLocalRandom.current().nextInt(0, 100) <= 2) {
-
+                    History.add("Popsuty za "+repairCost+"Adriana");
                     System.out.println("Mechanik nie dał rady naprawić i uszkodził kolejną część, potrzebna interwencja Janusza ");
                     return false;
 
                 } else {
-
+                    History.add("Popsuty za "+repairCost+"Adriana");
                     System.out.println("Mechanik nie dał rady naprawić, potrzebna interwencja Janusza");
                     return false;
                 }
@@ -143,5 +151,10 @@ public class Vehicle {
             }
         }
     }
+
+    public ArrayList<String> getHistory(){
+        return this.History;
+    }
+
 }
 
