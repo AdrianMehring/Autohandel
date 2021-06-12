@@ -6,7 +6,7 @@ public class Main {
         ArrayList<Vehicle> vehicles = Vehicle.generateVehicles(30);
         ArrayList<Client> clients = Client.generateRandomClients(2);
         Player Adr = new Player(100000);
-        long Winningmoney=Adr.money*21;
+        long Winningmoney=Adr.money*2;
         Adr.startingClients(clients.get(0),clients);
         Adr.startingClients(clients.get(1),clients);
         System.out.println("Witam w grze tekstowej Autohandel u Janusza");
