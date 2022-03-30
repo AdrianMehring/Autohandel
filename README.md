@@ -4,6 +4,8 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
+* [Images](#Images)
+
 
 ## General info
 Projekt na zaliczenie, jest to gra autohandel w której użytkownik w 15 ruchów musi zebrać jak najwiekszą ilość pieniędzy.
